@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learn_Words_Android.Android", "Learn_Words_Android\Learn_Words_Android.Android\Learn_Words_Android.Android.csproj", "{BAE9C74F-C102-48C1-88E6-0792C6562EF1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Learn_Words_Android", "Learn_Words_Android\Learn_Words_Android\Learn_Words_Android.csproj", "{CD1AB2AD-1FD5-446F-9BA0-3BD7278B621F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAE9C74F-C102-48C1-88E6-0792C6562EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAE9C74F-C102-48C1-88E6-0792C6562EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAE9C74F-C102-48C1-88E6-0792C6562EF1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BAE9C74F-C102-48C1-88E6-0792C6562EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAE9C74F-C102-48C1-88E6-0792C6562EF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAE9C74F-C102-48C1-88E6-0792C6562EF1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{CD1AB2AD-1FD5-446F-9BA0-3BD7278B621F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD1AB2AD-1FD5-446F-9BA0-3BD7278B621F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD1AB2AD-1FD5-446F-9BA0-3BD7278B621F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CD1AB2AD-1FD5-446F-9BA0-3BD7278B621F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD1AB2AD-1FD5-446F-9BA0-3BD7278B621F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD1AB2AD-1FD5-446F-9BA0-3BD7278B621F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC2C2F03-3813-42F6-BB0A-57B4DBC0FED1}
+	EndGlobalSection
+EndGlobal

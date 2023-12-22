@@ -1,0 +1,583 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Learn_Words_Android.MainPage">
+
+    <ContentPage.Resources>
+        <Style x:Key="CustomSwitchStyle" TargetType="Switch">
+            <Style.Triggers>
+                <Trigger TargetType="Switch" Property="IsToggled" Value="True">
+                    <Setter Property="ThumbColor" Value="#006400" />
+                    <Setter Property="OnColor" Value="Green" />
+                </Trigger>
+                <Trigger TargetType="Switch" Property="IsToggled" Value="False">
+                    <Setter Property="ThumbColor" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout x:Name="Form" VerticalOptions="Center">
+
+            <StackLayout x:Name="MainMenu" IsVisible="true">
+                <Button x:Name="TestingMenuButton"
+                        Text = "Тестирование"
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        Clicked="TestingMenu_Button_Click"/>
+
+                <Button x:Name="DictionariesMenuButton"
+            Text="Словари"
+            FontSize="30"
+            HorizontalOptions="Center"
+                    Clicked="DictionariesMenu_Button_Click"/>
+
+                <Button x:Name="SettingsMenuButton"
+            Text="Настройки"
+            FontSize="30"
+            HorizontalOptions="Center"
+                    Clicked="SettingsMenuButton_Clicked"/>
+
+            </StackLayout>
+
+            <StackLayout x:Name="TestingMenu" IsVisible="false">
+                <Label x:Name="ChooseDictionaryToLearn_Label"
+            Text="Выберите словарь"
+            FontSize="30"
+            FontFamily="Times New Roman"
+            FontAttributes="Bold"
+            TextColor = "Color.Black"
+            HorizontalOptions="Center"/>
+
+                <Picker x:Name="ChooseDictionaryToLearn_ComboBox"
+            FontSize="30"
+            WidthRequest="280"
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Center"
+            SelectedIndexChanged="ChooseDictionaryToLearn_ComboBox_SelectedIndexChanged"/>
+
+                <Button x:Name="ConfirmDictionary"
+            FontSize="30"
+            Text="Подтвердить"
+            HorizontalOptions="Center"
+            IsEnabled="false"
+            Clicked="ConfirmChooseDictionaryToLearn_Button_Click"/>
+
+
+                <Button x:Name="BackFromChooseDictionaryToLearn_Menu_Button"
+            FontSize="30"
+            Text="Назад"
+            HorizontalOptions = "Center"
+            Clicked="BackFromChooseDictionaryToLearn_Menu_Button_Click"/>
+            </StackLayout>
+
+            <StackLayout x:Name="ChooseModOfGeneratingWordMenu" IsVisible="false">
+                <Label x:Name="ChooseModOfGeneratingWord_Label"
+            Text="Выберите из какого языка генерировать слово"
+            HorizontalTextAlignment="Center"
+            FontSize="30"
+            FontFamily="Times New Roman"
+            FontAttributes="Bold"
+            TextColor = "Color.Black"
+            HorizontalOptions="Center"/>
+
+                <Picker x:Name="ChooseModOfGeneratingWord_ComboBox"
+            FontSize="30"
+            WidthRequest="280"
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Center"
+            SelectedIndexChanged="ChooseModOfGeneratingWord_ComboBox_SelectedIndexChanged"/>
+
+                <Button x:Name="ConfirmModOfGenerating"
+            FontSize="30"
+            Text="Подтвердить"
+            HorizontalOptions="Center"
+            IsEnabled="false"
+            Clicked="ChooseModOfGeneratingWord_Button_Click"/>
+
+
+                <Button x:Name="BackFromChooseModOfGeneratingWord_Menu_Button"
+            FontSize="30"
+            Text="Назад"
+            HorizontalOptions = "Center"
+            Clicked="BackFromChooseModOfGeneratingWord_Menu_Button_Click"/>
+            </StackLayout>
+
+            <StackLayout x:Name="DictionariesMenu" IsVisible="false">
+                <Button Text="Просмотреть добавленные"
+                    HorizontalOptions="Center"
+                    FontSize="23"
+                    Clicked="WatchAddedDictionariesMenu_Button_Click"/>
+                <Button Text="Добавить новый словарь"
+                    HorizontalOptions="Center"
+                    FontSize="23"
+                    Clicked="AddDictionaries_Menu_Button_Click"/>
+                <Button x:Name="DeleteDictionaries_Menu_Button"
+                Text="Удалить словарь"
+                    HorizontalOptions="Center"
+                    FontSize="23"
+                    Clicked="DeleteDictionaries_Menu_Button_CLick"/>
+                <Button Text="Назад"
+                    HorizontalOptions="Center"
+                    FontSize="23"
+                    Clicked="BackFromDictionariesMenu"/>
+            </StackLayout>
+
+            <StackLayout x:Name="AddDictionariesMenu" IsVisible="false">
+                <Label Text="Выберите файл"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   TextColor="Black"/>
+                <Grid HorizontalOptions="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Entry x:Name="EnterDictionaryToAddFilePath"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    WidthRequest="150"
+                       TextChanged="TextBoxesInAddDictionaryMenu_TextChanged"/>
+                    <Button x:Name="BrowseDictionary_Button"
+                    HorizontalOptions="Center"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Text="Искать"
+                        Clicked="BrowseDictionary_Button_Click"/>
+                </Grid>
+                <Label Text="Выберите название для словаря"
+                   FontSize="30"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"/>
+                <Entry x:Name="EnterNameForDictionaryToAdd"
+                HorizontalOptions="Center"
+                   WidthRequest="200"
+                   TextChanged="TextBoxesInAddDictionaryMenu_TextChanged"/>
+                <Button x:Name="AddDictionary_Button"
+                Text="Добавить"
+                    HorizontalOptions="Center"
+                    IsEnabled="false"
+                    Clicked="AddDictionary_Button_Click"/>
+                <Button Text="Назад"
+                    HorizontalOptions="Center"
+                    Clicked="BackFromAddDictionariesMenu"/>
+            </StackLayout>
+
+            <StackLayout x:Name="WatchAddedDictionariesMenu" IsVisible="false">
+                <Label x:Name="EnterNameOfDictionaryToSearch_Label"
+                   HorizontalOptions="Center"
+                   Text="Введите имя словаря"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   TextColor="Black"/>
+                <Entry x:Name="EnterDictionaryToSearchName_TextBox"
+                   HorizontalOptions="Center"
+                   WidthRequest="200"
+                   HorizontalTextAlignment="Center"
+                   TextChanged="EnterDictionaryToSearchName_TextBox_TextChanged"/>
+                <ListView x:Name="DictionariesList_ListBox"
+                      HeightRequest="300"
+                      HorizontalOptions="Center"
+                      ItemSelected="DictionariesList_ListBox_ItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid HorizontalOptions="Center">
+                                        <Label Text="{Binding .}"
+                                       TextColor="Black"
+                                       FontSize="20"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"/>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <!--<syncfusion:SfListView x:Name="listView" />-->
+                <!--<syncfusion:SfListView x:Name="DictionariesList_ListBox"
+                      HeightRequest="300"
+                      HorizontalOptions="Center"
+                                   SelectionMode="SingleDeselect"
+                      ItemSelected="DictionariesList_ListBox_ItemSelected">
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid HorizontalOptions="Center">
+                                    <Label Text="{Binding .}"
+                                       TextColor="Black"
+                                       FontSize="20"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"/>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>-->
+                <Button x:Name="BackFromWatchAddedDictionariesMenu_Button"
+                    Text="Назад"
+                    HorizontalOptions="Center"
+                    Clicked="BackFromWatchAddedDictionariesMenu_Button_Click"/>
+            </StackLayout>
+
+            <StackLayout x:Name="SettingsMenu" IsVisible="false">
+                <Grid HorizontalOptions="Center">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Grid.Row="0" HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Озвучивать слова" Grid.Column="0" VerticalOptions="Center"
+                           FontSize="20"
+                           TextColor="Black"/>
+                        <Switch x:Name="Voice_Switch" Grid.Column="1" VerticalOptions="Center"
+                            Style="{StaticResource CustomSwitchStyle}"
+                            Toggled="SwitchToggled"/>
+                    </Grid>
+                    
+                    <Button x:Name="BackFromSettingMenu_Button"
+                            Text="Назад" 
+                            FontSize="24"
+                            Grid.Row="2" HorizontalOptions="CenterAndExpand"
+                            Clicked="BackFromSettingMenu_Button_Clicked"/>
+                    
+                </Grid>
+            </StackLayout>
+
+            <StackLayout x:Name="GeneratingWordMenu" IsVisible="false">
+
+                <Grid>
+
+                    <Label x:Name="GeneratedWord_Label"
+                   Text="Слово"
+                   HorizontalOptions="Center"
+                   FontSize="30"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                   Grid.Row="0"/>
+                    <Entry x:Name="UsersInput_TextBox"
+                HorizontalOptions="Center"
+                   WidthRequest="250"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="1"
+                   TextChanged="UsersInput_TextBox_TextChanged"/>
+                    <Button x:Name="CheckUsersAnswer_Button"
+                    Text="Проверить"
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    IsEnabled="false"
+                    Clicked="CheckAnswerButton_Click"
+                    Grid.Row="2"/>
+                    <Button x:Name="BackFromGeneratingWordMenu_Button"
+                    Text="Назад"
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    Clicked="BackFromGeneratingWordMenu_Button_Click"
+                    Grid.Row="4"/>
+
+                </Grid>
+
+            </StackLayout>
+
+            <StackLayout x:Name="RightAnswerMenu" IsVisible="false">
+                <Label x:Name="Right_Label"
+                   Text="Правильно"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   HorizontalOptions="Center"/>
+                <Button x:Name="BackFromRightAnswerMenu_Button"
+                    Text="Продолжить"
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    Clicked="BackFromRightAnswerMenu_Button_Click"/>
+            </StackLayout>
+
+            <StackLayout x:Name="WrongAnswerMenu" IsVisible="false">
+
+                <Grid>
+
+                    <Label x:Name="Wrong_Label"
+                       Grid.Row="0"
+                   Text="Неправильно"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"/>
+
+
+                    <Label x:Name="Word_Label"
+                           Grid.Row ="1"
+                   Text="Слово:"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                           TextColor="Black"/>
+                    <Label x:Name="Word_Value_Label"
+                           Grid.Row ="2"
+                   Text="слово для перевода"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       TextColor="Black"/>
+
+
+                    <Label x:Name="UsersInput_Label"
+                   Text="Ваш ввод:"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                           Grid.Row ="4"/>
+                    <Label x:Name="UsersInput_Value_Label"
+                   Text="ввод пользователя"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                           TextColor="Black"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                           Grid.Row ="5"/>
+
+
+                    <Label x:Name="Answer_Label"
+                   Text="Правильный ответ:"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                           TextColor="Black"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                           Grid.Row="7"/>
+                    <Label x:Name="Answer_Value_Label"
+                   Text="ответ"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                           TextColor="Black"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                           Grid.Row="8"/>
+                    <Button x:Name ="BackFromWrongAnswerMenu_Button"
+                        Grid.Row="9"
+                            HorizontalOptions="Center"
+                            Text="Продолжить"
+                            FontSize="25"
+                        Clicked="BackFromWrongAnswerMenu_Button_Click"/>
+
+                </Grid>
+
+            </StackLayout>
+
+            <StackLayout x:Name="EndOfTestMenu" IsVisible="false">
+                <Label x:Name="Congratulations_Button"
+                   Text="Поздравляю&#x0a;Слова закончились"
+                   TextColor="Black"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"/>
+                <Button x:Name="FinishTest_Button"
+                    Text="Продолжить"
+                    HorizontalOptions="Center"
+                    FontSize="30"
+                    Clicked="FinishTest_Button_Click"/>
+            </StackLayout>
+
+            <StackLayout x:Name="DeleteDictionary_Menu" IsVisible="false">
+                <Label x:Name="EnterNameOfDictionaryToDelete_Label"
+                   HorizontalOptions="Center"
+                   Text="Введите имя словаря"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   TextColor="Black"/>
+                <Entry x:Name="EnterDictionaryToDeleteName_TextBox"
+                   HorizontalOptions="Center"
+                   WidthRequest="200"
+                   HorizontalTextAlignment="Center"
+                   TextChanged="EnterDictionaryToDeleteName_TextBox_TextChanged"/>
+                <ListView x:Name="DictionariesToDeleteList_ListBox"
+                      HeightRequest="300"
+                      HorizontalOptions="Center"
+                      ItemSelected="DictionariesToDeleteList_ListBox_ItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid HorizontalOptions="Center">
+                                        <Label Text="{Binding .}"
+                                       TextColor="Black"
+                                       FontSize="20"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"/>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button x:Name="BackFromDeleteDictionariesMenu_Button"
+                    Text="Назад"
+                    HorizontalOptions="Center"
+                    Clicked="BackFromDeleteDictionariesMenu_Button_Click"/>
+            </StackLayout>
+
+            <StackLayout x:Name="ConfirmDeleting_Menu" IsVisible="false">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0"
+                    Text="Вы хотите удалить словарь:"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   HorizontalOptions="Center"/>
+                    <Label x:Name="NameOfDictionaryToDelete_Label"
+                    Grid.Row="2"
+                    Text="Название словаря"
+                   FontSize="25"
+                   HorizontalOptions="Center"
+                   TextColor="Black"/>
+                    <Button x:Name="ConfirmDeleting_Button"
+                    Grid.Row="4"
+                    Text="Удалить"
+                    HorizontalOptions="Center"
+                    FontSize="30"
+                        Clicked="ConfirmDeleting_Button_Click"/>
+                    <Button Grid.Row="6"
+                    Text="Отмена"
+                    HorizontalOptions="Center"
+                    FontSize="25"
+                        Clicked="CancelDeleting_Button_Click"/>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout x:Name="ShowContentOfTheDictionaryMenu" IsVisible="false">
+                <Label x:Name="NameOfDictionaryToShow_Label"
+                   Text="Название словаря"
+                   HorizontalOptions="Center"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   TextColor="Black"/>
+                <ListView x:Name="ContentOfTheDictionary_ListBox"
+                      HeightRequest="300"
+                      HorizontalOptions="Center"
+                      SelectionMode="None"
+                      ItemSelected="ContentOfTheDictionary_ListBox_ItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid HorizontalOptions="Center"
+                                      VerticalOptions="Center">
+                                        <Label Text="{Binding .}"
+                                       TextColor="Black"
+                                       FontSize="20"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"/>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Button x:Name="AddWordMenu_Button"
+                    Text="+"
+                        HorizontalOptions="Center"
+                        FontSize="26"
+                        Clicked="AddWordMenu_Button_Clicked"/>
+                <Label/>
+                <Label/>
+                
+                <Button Text="Назад"
+                    HorizontalOptions="Center"
+                    Clicked="BackFromShowContentOfTheDictionaryMenu_Button_Click"/>
+            </StackLayout>
+
+            <StackLayout x:Name="AddWord_Menu" IsVisible="false">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="DictionaryName_InAddWordMenu_Label"
+                        Text="Название словаря" 
+                       HorizontalOptions="Center"
+                       FontSize="30"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                           Grid.Row="0"/>
+                    <Entry x:Name="EnterFirstLanguageWordToAdd_TextBox"
+                        HorizontalOptions="Center"
+                       WidthRequest="250"
+                           Grid.Row="2"
+                           TextChanged="TextBoxesInAddWordMenu_TextChanged"/>
+                    <Label Text="-"
+                       TextColor="Black"
+                       HorizontalOptions="Center"
+                       FontSize="40"
+                           Grid.Row="3"/>
+                    <Entry x:Name="EnterSecondLanguageWordToAdd_TextBox"
+                        HorizontalOptions="Center"
+                       WidthRequest="250"
+                           Grid.Row="4"
+                           TextChanged="TextBoxesInAddWordMenu_TextChanged"/>
+                    <Button x:Name="Add_Word_Button"
+                            Text="Добавить"
+                            HorizontalOptions="Center"
+                            FontSize="26"
+                            Grid.Row="6"
+                            IsEnabled="False"
+                            Clicked="Add_Word_Button_Clicked"/>
+                    <Button x:Name="BackFromAddWordMenu_Button"
+                        Text="Назад"
+                            TextColor="Black"
+                            HorizontalOptions="Center"
+                            Grid.Row="8"
+                            Clicked="BackFromAddWordMenu_Button_Clicked"/>
+
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
